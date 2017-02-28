@@ -1,11 +1,9 @@
-//the setup
-
 
 //needed vars:
 
 var dots=0;
-var old_X=-1;
-var old_Y=-1;
+var old_X=0;
+var old_Y=0;
 
 //fxn to draw the dots, and attach the lines
 var drop_dot = function(event){
@@ -13,13 +11,13 @@ var drop_dot = function(event){
     var y = event.offsetY;
 
     if(dots != 0){
-	var line = document.createElementNS("http://www.w3.org/2000/svg","line");
-	line.setAttribute("x0", old_X);
-	line.setAttribute("y0", old_Y);
-	line.setAttribute("x1", x);
-	line.setAttribute("y1", y);
-	line.setAttribute("style", "stroke:rgb(255,0,0);stroke-width:2");
-	document.getElementById("vimage").appendChild(line);
+	var l = document.createElementNS("http://www.w3.org/2000/svg","line");
+	l.setAttribute("x0", old_X);
+	l.setAttribute("y0", old_Y);
+	l.setAttribute("x1", x);
+	l.setAttribute("y1", y);
+	l.setAttribute("style", "stroke:rgb(255,0,0);stroke-width:2");
+	document.getElementById("vimage").appendChild(l);
     }
     dots++;
     old_X=x;
@@ -37,17 +35,22 @@ var drop_dot = function(event){
 
 
 
-/*
+
 //fxn to clear
-var clear_canvas = function(){
+var clear_svg = function(){
     dots=0;
     old_X=0;
     old_Y=0;
     
-    ctx.clearRect(0,0,500,500);
+    var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    c.setAttribute("cx", "250");
+    c.setAttribute("cy", "250");
+    c.setAttribute("r", "5000");
+    c.setAttribute("fill", "white");
+
+    document.getElementById("vimage").appendChild(c);
 }
-*/
 
 
 document.getElementById("vimage").addEventListener("click", drop_dot);
-//document.getElementById("clear").addEventListener("click", clear_canvas);
+document.getElementById("clear").addEventListener("click", clear_svg);
