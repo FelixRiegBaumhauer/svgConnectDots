@@ -4,8 +4,8 @@
 //needed vars:
 
 var dots=0;
-var old_X=0;
-var old_Y=0;
+var old_X=-1;
+var old_Y=-1;
 
 //fxn to draw the dots, and attach the lines
 var drop_dot = function(event){
@@ -13,21 +13,26 @@ var drop_dot = function(event){
     var y = event.offsetY;
 
     if(dots != 0){
-	ctx.beginPath();
-	ctx.moveTo(old_X,old_Y);
-	ctx.lineTo(x,y);
-	ctx.stroke();
-	
+	var line = document.createElementNS("http://www.w3.org/2000/svg","line");
+	line.setAttribute("x0", old_X);
+	line.setAttribute("y0", old_Y);
+	line.setAttribute("x1", x);
+	line.setAttribute("y1", y);
+	line.setAttribute("style", "stroke:rgb(255,0,0);stroke-width:2");
+	document.getElementById("vimage").appendChild(line);
     }
-    ctx.beginPath();
-    ctx.moveTo(x,y);
-    ctx.arc(x, y, 30, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fill();
-
     dots++;
     old_X=x;
     old_Y=y;
+    console.log("dot");
+    
+    var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    c.setAttribute("cx", x);
+    c.setAttribute("cy", y);
+    c.setAttribute("r", "30");
+    c.setAttribute("fill", "green");
+
+    document.getElementById("vimage").appendChild(c);
 }
 
 
@@ -44,5 +49,5 @@ var clear_canvas = function(){
 */
 
 
-document.getElementById("slate").addEventListener("click", drop_dot);
+document.getElementById("vimage").addEventListener("click", drop_dot);
 //document.getElementById("clear").addEventListener("click", clear_canvas);
