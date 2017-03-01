@@ -12,10 +12,10 @@ var drop_dot = function(event){
 
     if(dots != 0){
 	var l = document.createElementNS("http://www.w3.org/2000/svg","line");
-	l.setAttribute("x0", old_X);
-	l.setAttribute("y0", old_Y);
-	l.setAttribute("x1", x);
-	l.setAttribute("y1", y);
+	l.setAttribute("x1", old_X);
+	l.setAttribute("y1", old_Y);
+	l.setAttribute("x2", x);
+	l.setAttribute("y2", y);
 	l.setAttribute("style", "stroke:rgb(255,0,0);stroke-width:2");
 	document.getElementById("vimage").appendChild(l);
     }
