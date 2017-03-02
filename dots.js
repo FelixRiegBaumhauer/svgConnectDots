@@ -42,13 +42,21 @@ var clear_svg = function(){
     old_X=0;
     old_Y=0;
     
-    var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    //var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+
+    var svg = document.getElementById("vimage");
+    while (svg.lastChild) {
+	svg.removeChild(svg.lastChild);
+    };
+    started = false;
+    /*
     c.setAttribute("cx", "250");
     c.setAttribute("cy", "250");
     c.setAttribute("r", "5000");
-    c.setAttribute("fill", "white");
+    c.setAttribute("fill", "green");
 
     document.getElementById("vimage").appendChild(c);
+*/
 }
 
 
